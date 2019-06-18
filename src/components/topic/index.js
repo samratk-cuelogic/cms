@@ -2,20 +2,16 @@
 import express from 'express';
 
 const router = express.Router();
-// import topicController from 'topic-controller';
+  
 
-
+import topicValidation from './topic-validation';
 import topicController from './topic-controller';
-
 
 
 console.log("components==>topic==>index.js");
 /* GET home page. */
 
-router.get('/', (req, res, next) => {
-  console.log("INDEX FILE  TopicController :: getTopic");
-  next();
-}, topicController.getTopic);
+router.get('/', topicValidation.getTopic , topicController.getTopic);
 
 
 
