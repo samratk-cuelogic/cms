@@ -7,12 +7,12 @@ class TopicVallidation {
 
     getTopic = (req, res, next) => {
 
-        console.log("INDEX FILE  TopicController :: getTopic");
+        console.log(" FILE  TopicVallidation :: getTopic");
         next();
     }
 
     addTopic = () => {
-        console.log("TopicController :: addTopic");
+        console.log("TopicVallidation :: addTopic");
     }
 }
 

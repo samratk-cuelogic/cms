@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "npm run prod", 
+    "start": "npm run prod",
     "server": "nodemon ./src/bin/www --exec babel-node",
     "server:prod": "node ./dist/bin/www",
     "dev": "NODE_ENV=development npm-run-all server",
@@ -17,8 +17,10 @@
     "express": "~4.16.1",
     "hbs": "~4.0.4",
     "http-errors": "~1.6.3",
-    "morgan": "~1.9.1",
-    "rimraf": "^2.6.3"
+    "morgan": "^1.9.1",
+    "rimraf": "^2.6.3",
+    "winston": "^3.2.1",
+    "winston-daily-rotate-file": "^3.9.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",
