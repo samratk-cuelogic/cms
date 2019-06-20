@@ -5,10 +5,13 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
 const indexRouter = require('./routes/index');
+const publicRouter = require('./routes/public');
 
 var errorhandler = require('errorhandler')
 const app = express();
 
+// const authentication = require('./middleware/Authentication');
+import authentication from './middleware/Authentication';
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -19,10 +22,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter); 
+
+app.use('/', publicRouter);
+app.use('/auth', authentication.authenticate, indexRouter);
+
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
@@ -32,13 +38,15 @@ if (process.env.NODE_ENV === 'development') {
   app.use(errorhandler({ log: errorNotification }))
 }
 
-function errorNotification (err, str, req) {
-  var title = 'Error in ' + req.method + ' ' + req.url; 
-  
+
+
+function errorNotification(err, str, req) {
+  var title = 'Error in ' + req.method + ' ' + req.url;
+
   console.log(`title : ${title} , message : ${str} `);
 }
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -47,8 +55,8 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
- 
 
- module.exports = app;
+
+module.exports = app;
 
 // export default app;

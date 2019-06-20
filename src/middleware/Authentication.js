@@ -64,7 +64,8 @@ class Authentication {
             try {
                 let verifyRes = await this.verifyToken(token);
                 logger.info(`middleware : Authentication : verifyRes ` + verifyRes);
-                res.status(401).send(verifyRes);
+                // res.status(401).send(verifyRes);
+                next();
             } catch (JsonWebTokenError) {
                 res.status(401).send({ status: 401, ...JsonWebTokenError });
             }
