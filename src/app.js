@@ -6,7 +6,7 @@ const logger = require('morgan');
 
 const indexRouter = require('./routes/index');
 
-
+var errorhandler = require('errorhandler')
 const app = express();
 
 // view engine setup
@@ -26,6 +26,17 @@ app.use(function(req, res, next) {
   next(createError(404));
 });
 
+
+if (process.env.NODE_ENV === 'development') {
+  // only use in development
+  app.use(errorhandler({ log: errorNotification }))
+}
+
+function errorNotification (err, str, req) {
+  var title = 'Error in ' + req.method + ' ' + req.url; 
+  
+  console.log(`title : ${title} , message : ${str} `);
+}
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
@@ -36,5 +47,8 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+ 
 
-module.exports = app;
+ module.exports = app;
+
+// export default app;

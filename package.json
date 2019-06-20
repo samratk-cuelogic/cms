@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "npm run prod",
-    "server": "nodemon ./src/bin/www --exec babel-node",
+    "server": "nodemon ./src/bin/www.js --exec babel-node",
     "server:prod": "node ./dist/bin/www",
     "dev": "NODE_ENV=development npm-run-all server",
     "clean": "rimraf dist",
@@ -12,11 +12,14 @@
     "prod": "NODE_ENV=production npm-run-all clean build server:prod"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
+    "errorhandler": "^1.5.1",
     "express": "~4.16.1",
     "hbs": "~4.0.4",
     "http-errors": "~1.6.3",
+    "jsonwebtoken": "^8.5.1",
     "morgan": "^1.9.1",
     "rimraf": "^2.6.3",
     "winston": "^3.2.1",

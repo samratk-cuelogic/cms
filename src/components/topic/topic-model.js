@@ -14,4 +14,4 @@ class TopicModel {
     }
 }
 
-export default TopicModel;
+export default new TopicModel();
